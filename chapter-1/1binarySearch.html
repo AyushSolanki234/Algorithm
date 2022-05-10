@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BinarySearch</title>
+</head>
+<body>
+    <h1>Binary Search</h1>
+</body>
+<script>
+    function BinarySearch(name,key){
+        // console.log("Sorting Array is: "+name);
+        let s=0;
+        let e=name.length-1;
+        while(s<=e){
+            let mid = Math.floor((s+e)/2);
+            if(name[mid]==key){
+                return mid;
+            }
+            else if(name[mid]>key){
+                e = mid-1;
+            }
+            else if(name[mid]<key){
+                s = mid +1;
+            }
+        }
+        return false;
+    }
+    let name = [];
+    let size = prompt("Enter the size of array");
+
+    for(let i=0;i<size;i++){
+        name[i] =  prompt("Enter the " + (i+1) + " element");
+    }
+    let key = prompt("Please enter the searching element");
+
+
+    // Sorting
+    name.sort(function(first,second){
+        return first-second;
+    });
+    document.write("Sorting Array is: "+name+"<br>");
+
+    
+    if(BinarySearch(name,key)){
+        document.write("Element found at "+BinarySearch(name,key)+ " index");
+    }
+    else{
+        document.write("Element not found");
+    }
+</script>
+</html>

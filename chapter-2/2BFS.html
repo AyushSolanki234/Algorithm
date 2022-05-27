@@ -29,8 +29,7 @@ class Queue {
 }
 
     class Graph {
-    constructor(noOfver)
-    {
+    constructor(noOfver){
         this.noOfver = noOfver;
         this.AdjList = new Map();
     }
@@ -82,12 +81,10 @@ class Queue {
 let g = new Graph(6);
 let ver = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
 
-// adding ver
 for (let i = 0; i < ver.length; i++) {
 	g.addVertex(ver[i]);
 }
 
-// adding edges
 g.addEdge('A', 'B');
 g.addEdge('A', 'D');
 g.addEdge('A', 'E');

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Breadth First Search</h3>
+</body>
+<script>
+class Queue {
+    constructor() {
+        this.items = [];
+    }
+    
+    enqueue(element) {
+        return this.items.push(element);
+    }
+    dequeue() {
+        if(this.items.length > 0) {
+            return this.items.shift();
+        }
+    }
+    isEmpty(){
+       return this.items.length == 0;
+    }
+}
+
+    class Graph {
+    constructor(noOfver)
+    {
+        this.noOfver = noOfver;
+        this.AdjList = new Map();
+    }
+ 
+    addVertex(v){
+    this.AdjList.set(v, []);
+    }
+
+    addEdge(v, w){
+	this.AdjList.get(v).push(w);
+	this.AdjList.get(w).push(v);
+    }
+
+    printGraph(){
+	    let get_keys = this.AdjList.keys();
+	    for (let i of get_keys){
+		    let get_values = this.AdjList.get(i);
+		    let conc = "";
+		    for (let j of get_values)
+			    conc += j + " ";
+		    console.log(i + " -> " + conc);
+	    }
+    }
+
+ 
+    // bfs(v)
+    bfs(startingNode){
+	    let visited = {};
+    	let q = new Queue();
+
+	    visited[startingNode] = true;
+	    q.enqueue(startingNode);
+
+	    while (!q.isEmpty()) {
+		    let getQueueElement = q.dequeue();
+            console.log(getQueueElement);
+            let get_List = this.AdjList.get(getQueueElement);
+		    for (let i in get_List) {
+			    let neigh = get_List[i];
+                if (!visited[neigh]) {
+				    visited[neigh] = true;
+				    q.enqueue(neigh);
+			    }
+		    }
+	    }
+    }
+}
+
+let g = new Graph(6);
+let ver = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
+
+// adding ver
+for (let i = 0; i < ver.length; i++) {
+	g.addVertex(ver[i]);
+}
+
+// adding edges
+g.addEdge('A', 'B');
+g.addEdge('A', 'D');
+g.addEdge('A', 'E');
+g.addEdge('B', 'C');
+g.addEdge('D', 'E');
+g.addEdge('E', 'F');
+g.addEdge('E', 'C');
+g.addEdge('C', 'F');
+
+console.log("BFS");
+g.bfs('A');
+
+</script>
+</html>

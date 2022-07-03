@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Union-Find Algorithm</title>
+</head>
+<body>
+    <h2>Union-Find Algorithm</h2>
+    <script>
+        var V, E;    
+        var edge;
+        
+        class Edge{
+            constructor(){
+                this.src = 0;
+                this.dest = 0;
+            }
+        };
+        
+        function initial(v,e){
+            V = v;
+            E = e;
+            edge = Array.from(Array(E), () => Array());
+        }
+        
+        
+        function find(par, i){
+            if (par[i] == -1)
+                return i;
+                
+            return find(par,par[i]);
+        }
+        
+        function Union(par, x, y){
+            par[x] = y;
+        }
+    
+        function Cycle(){
+            var par = Array(V).fill(0);
+            
+            for(var i = 0; i < V; ++i)
+                par[i] =- 1;
+            
+            for (var i = 0; i < E; ++i){
+                var x = find(par,edge[i].src);
+                var y = find(par,edge[i].dest);
+                
+                if (x == y)
+                    return 1;
+                
+                Union(par, x, y);
+            }
+            return 0;
+        }
+    
+        var V = 3, E = 3;
+        initial(V, E);
+        
+        edge[0].src = 0;
+        edge[0].dest = 1;
+        
+        edge[1].src = 1;
+        edge[1].dest = 2;
+        
+        edge[2].src = 0;
+        edge[2].dest = 2;
+        
+        if (Cycle() == 1)
+            document.write("graph contains cycle");
+        else
+            document.write("graph doesn't contain cycle");
+             
+        </script>     
+</body>
+</html>

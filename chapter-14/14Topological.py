@@ -40,9 +40,3 @@ g.addEdge(3, 1)
 print("Topological Sort is ")
 
 g.topologicalSort()
-
-
-
-
-
-# This code is written by Ayush Solnki

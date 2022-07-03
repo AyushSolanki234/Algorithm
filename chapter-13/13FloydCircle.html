@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floyd's Cycle Detection Algorithm</title>
+</head>
+<body>
+    <h2>Floyd's Cycle Detection Algorithm</h2>
+    <script>
+		class Node{
+			constructor(d){
+				this.data = d;
+				this.Link = null;
+			}
+		}
+
+		let head = null;
+
+		function detect(head) {
+			let slowPointer = head;
+			let fastPointer = head;
+
+			while (slowPointer != null && fastPointer != null && fastPointer.Link != null) {
+				slowPointer = slowPointer.Link;
+				fastPointer = fastPointer.Link.Link;
+				if (slowPointer == fastPointer)
+					return 1;
+			}
+			return 0;
+		}
+
+		head = new Node(10);
+		head.Link = new Node(20);
+		head.Link.Link = new Node(30);
+		head.Link.Link.Link = new Node(40);
+		head.Link.Link.Link.Link = new Node(50);
+
+		let temp = head;
+		while (temp.Link != null)
+			temp = temp.Link;
+
+		temp.Link = head;
+
+		if (detect(head))
+			document.write("Loop exists in the Linked List" + "<br>");
+		else
+			document.write("Loop does not exists in the Linked List" + "<br>");
+
+	// This code is Written by Ayush Solanki :-) 
+	</script>
+
+</body>
+</html>

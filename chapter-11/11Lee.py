@@ -53,11 +53,9 @@ def bfsLee(mat, src: Cell, dest: Cell):
                 Adjcell = queueNode(Cell(row, col),curr.dist + 1)
                 q.append(Adjcell)
 
-    # Return -1 if destination cannot be reached
     return -1
 
 
-# Driver code
 mat = [[1, 0, 1, 1, 1],
        [1, 0, 1, 0, 1],
        [1, 1, 1, 0, 1],
